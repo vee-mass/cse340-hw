@@ -4,3 +4,80 @@
 *:after {
   box-sizing: border-box;
 }
+
+/* --- MOBILE FIRST (Default) --- */
+body {
+  background-image: url('../images/site/checkerboard.jpg');
+  font-family: 'Segoe UI', Arial, sans-serif;
+  padding: 10px;
+}
+
+#wrapper {
+  background-color: white;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 4px solid #3a9691;
+}
+
+/* Nav Bar */
+#main-nav {
+  background-color: #333;
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 12px 0;
+  margin: 10px 0;
+}
+#main-nav a { color: white; text-decoration: none; font-weight: bold; }
+
+/* Hero Box */
+.hero-container { position: relative; text-align: center; }
+.hero-container img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+
+.hero-msg {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #3a9691;
+  padding: 15px;
+  border: 1px solid #3a9691;
+  margin-bottom: 10px; /* Stacks on mobile */
+}
+
+#hero-btn { background-color: #3a9691; color: white; border: none; padding: 10px 20px; font-size: 1.1em; }
+
+/* Upgrades Grid */
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 10px;
+}
+.up-img { 
+  background-color: #3a9691; 
+  padding: 10px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  height: 80px;
+}
+.up-img img { max-height: 100%; }
+
+/* --- LARGE SCREEN VIEW --- */
+@media screen and (min-width: 750px) {
+  .hero-msg {
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    text-align: left;
+    z-index: 1;
+  }
+  
+  .flex-sections {
+    display: flex;
+    flex-direction: row-reverse; 
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+  
+  .upgrades, .reviews { width: 48%; }
+}
