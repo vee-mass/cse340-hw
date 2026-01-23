@@ -81,3 +81,44 @@ body {
   
   .upgrades, .reviews { width: 48%; }
 }
+
+#detail-display {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+#detail-display img {
+  width: 100%;
+  max-width: 500px; 
+  height: auto;
+  margin: 0 auto;
+}
+
+#detail-info {
+  padding: 0 10px;
+}
+
+#detail-info h2 {
+  margin-top: 0;
+}
+
+.price-label {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #3a9691;
+}
+
+@media screen and (min-width: 750px) {
+  #detail-display {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  #detail-display img, 
+  #detail-info {
+    width: 48%; 
+  }
+}
