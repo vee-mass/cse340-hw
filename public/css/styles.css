@@ -24,12 +24,43 @@ body {
 #main-nav {
   background-color: #333;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
   list-style: none;
   padding: 12px 0;
   margin: 10px 0;
 }
 #main-nav a { color: white; text-decoration: none; font-weight: bold; }
+
+#main-nav li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Target the list inside the nav */
+#main-nav ul {
+  display: flex;
+  flex-direction: row;      /* Places items side-by-side */
+  justify-content: space-around;
+  list-style: none;         /* Removes bullets */
+  padding: 0;
+  margin: 0;
+  background-color: #333;   /* Move background color here if needed */
+}
+
+/* Ensure the list items don't stack */
+#main-nav li {
+  display: inline-block; /* Fallback for older browsers */
+}
+
+/* Style the links */
+#main-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 12px 15px;
+  display: block; /* Makes the whole area clickable */
+}
 
 /* Hero Box */
 .hero-container { position: relative; text-align: center; }
@@ -122,3 +153,119 @@ body {
     width: 48%; 
   }
 }
+.login-container {
+  max-width: 420px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-top: 1rem;
+}
+
+.login-form input {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.login-form button {
+  margin-top: 1.5rem;
+  padding: 0.7rem;
+  cursor: pointer;
+}
+
+.flash-message {
+  background-color: #ffe6e6;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+/* ******************************************
+ * Registration Form Styling
+ *******************************************/
+
+/* Container for the registration form */
+.register-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;  /* light background for form */
+  border: 2px solid #3a9691;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Form layout */
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form labels */
+.register-form label {
+  font-weight: bold;
+  margin-top: 1rem;
+  color: #333;
+}
+
+/* Form input fields */
+.register-form input {
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 0.25rem;
+  transition: border-color 0.3s;
+}
+
+/* Flash messages */
+.flash-message {
+  background-color: #ffe6e6;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ff9999;
+  border-radius: 5px;
+  color: #cc0000;
+}
+
+/* Submit button */
+.register-form button {
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  background-color: #3a9691;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-form button:hover {
+  background-color: #2f7b76;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .register-container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+}
+
+input:required:invalid, input:focus:invalid {
+ background-image: url(/images/invalid.png);
+ background-position: right top;
+ background-repeat: no-repeat;
+}
+ input:required:valid {
+ background-image: url(/images/valid.png);
+ background-position: right top;
+ background-repeat: no-repeat;
+ }

@@ -13,4 +13,4 @@ router.get("/detail/:invId", utilities.handleErrors(invController.buildByInvId))
 // Route to trigger intentional error
 router.get("/trigger-error", utilities.handleErrors(invController.triggerError));
 
-module.exports = router;
+module.exports = router

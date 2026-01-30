@@ -24,6 +24,12 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
+Util.buildNav = async function (req, res, next) {
+  res.locals.nav = await Util.getNav()
+  next()
+}
+
+
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
