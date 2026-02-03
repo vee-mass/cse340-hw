@@ -3,29 +3,42 @@
 <main class="login-container">
     <h1><%= title %></h1>
 
+    <%# Display flash messages (success/error) %>
     <% if (messages && messages.length > 0) { %>
         <div class="flash-message">
             <%= messages[0] %>
         </div>
     <% } %>
 
-    <form action="/account/login" method="post" class="login-form">
+    <%# Display server-side validation errors %>
+    <% if (locals.errors) { %>
+      <ul class="notice">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <%  }) %>
+      </ul>
+    <% } %>
+
+    <%# The form class must match your CSS for proper layout %>
+    <form action="/account/login" method="post" class="login-form" id="login-form">
         <label for="account_email">Email</label>
         <input 
             type="email"
             id="account_email"
             name="account_email"
             required
+            value="<%= locals.account_email %>" <%# Sticky email %>
         >
 
         <label for="account_password">Password</label>
-        <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
+        <span class="password-hint">Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
         <input
             type="password"
             id="account_password"
             name="account_password"
             required
-            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" <%# Client-side pattern %>
+        >
 
         <button type="submit">Login</button>
     </form>
@@ -35,3 +48,4 @@
         <a href="/account/register">Register Here</a>
     </p>
 </main>
+

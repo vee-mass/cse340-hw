@@ -5,6 +5,25 @@
   box-sizing: border-box;
 }
 
+/* Header styling  */
+#top-header {
+    display: flex;
+    justify-content: space-between; /* Pushes CSE Motors left, My Account right */
+    align-items: center;
+    padding: 10px 0;
+    font-size: 1.2rem;
+}
+
+#top-header a {
+    text-decoration: none; /* Removes the underline */
+    color: #333; /* Dark gray/black text */
+    font-weight: bold;
+}
+
+#top-header a:hover {
+    text-decoration: underline;
+}
+
 /* --- MOBILE FIRST (Default) --- */
 body {
   background-image: url('../images/site/checkerboard.jpg');
@@ -259,13 +278,23 @@ body {
   }
 }
 
-input:required:invalid, input:focus:invalid {
- background-image: url(/images/invalid.png);
- background-position: right top;
- background-repeat: no-repeat;
+/* --- Input Validation Icons --- */
+
+input:not(:placeholder-shown):invalid {
+    background-image: url('/images/invalid.png');
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
 }
- input:required:valid {
- background-image: url(/images/valid.png);
- background-position: right top;
- background-repeat: no-repeat;
- }
+
+input:not(:placeholder-shown):valid {
+    background-image: url('/images/valid.png');
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+}
+
+/* Ensure inputs have a placeholder for the logic above to work */
+input::placeholder {
+    color: transparent; /* Makes it invisible but still 'present' for the CSS logic */
+}

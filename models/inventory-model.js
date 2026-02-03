@@ -4,7 +4,7 @@ const pool = require("../database/")
  * Get all classification
  * *************/
 async function getClassifications() {
-    return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
+  return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
 }
 
 /* ***************************
@@ -27,7 +27,7 @@ async function getInventoryByClassificationId(classification_id) {
 
 /* ***************************
  * Get specific vehicle by inv_id
- * (Task 1 - Prepared Statement)
+ * Task 1
  * ************************** */
 async function getInventoryByInvId(inv_id) {
   try {
@@ -41,4 +41,42 @@ async function getInventoryByInvId(inv_id) {
   }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getInventoryByInvId };
+/* *****************************
+* Add New Classification Task 2
+* *************************** */
+async function insertClassification(classification_name) {
+  try {
+    const sql = "INSERT INTO public.classification (classification_name) VALUES ($1) RETURNING *"
+    return await pool.query(sql, [classification_name])
+  } catch (error) {
+    return error.message
+  }
+}
+
+/* *****************************
+* Add New Inventory Item Task 3
+* *************************** */
+async function insertInventory(
+  classification_id, inv_make, inv_model, inv_description, 
+  inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color
+) {
+  try {
+    const sql = `INSERT INTO public.inventory 
+      (classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *`
+    return await pool.query(sql, [
+      classification_id, inv_make, inv_model, inv_description, 
+      inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color
+    ])
+  } catch (error) {
+    return error.message
+  }
+}
+
+module.exports = { 
+  getClassifications, 
+  getInventoryByClassificationId, 
+  getInventoryByInvId, 
+  insertClassification,
+  insertInventory 
+};

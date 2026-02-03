@@ -1,26 +1,40 @@
-]<% if (errors && errors.length > 0) { %>
-  <ul class="notice">
-    <% errors.forEach(error => { %>
-      <li><%= error.msg %></li>
-    <% }) %>
-  </ul>
-<% } %>
+<%- include("../partials/head") %>
 
-<form action="/account/register" method="post" class="register-form">
-    <label for="account_firstname">First Name</label>
-    <input type="text" id="account_firstname" name="account_firstname" required>
+<main class="register-container">
+    <h1><%= title %></h1>
 
-    <label for="account_lastname">Last Name</label>
-    <input type="text" id="account_lastname" name="account_lastname" required>
+    <% if (locals.errors) { %>
+      <ul class="notice">
+        <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+        <%  }) %>
+      </ul>
+    <% } %>
 
-    <label for="account_email">Email</label>
-    <input type="email" id="account_email" name="account_email" required>
+    <form action="/account/register" method="post" class="register-form" id="register-form">
+        <label for="account_firstname">First Name</label>
+        <input type="text" id="account_firstname" name="account_firstname" required 
+               [cite_start]value="<%= locals.account_firstname %>"> <%# Sticky  %>
 
-    <label for="account_password">Password</label>
-    <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
-    <input type="password" id="account_password" name="account_password" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+        <label for="account_lastname">Last Name</label>
+        <input type="text" id="account_lastname" name="account_lastname" required 
+               [cite_start]value="<%= locals.account_lastname %>"> <%# Sticky  %>
 
-    <button type="submit">Register</button>
-</form>
+        <label for="account_email">Email</label>
+        <input type="email" id="account_email" name="account_email" required 
+               [cite_start]value="<%= locals.account_email %>"> <%# Sticky  %>
 
-<p><a href="/account/login">Already have an account? Login here.</a></p>
+        <label for="account_password">Password</label>
+        <span class="password-hint">Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</span> 
+        <input type="password" id="account_password" name="account_password" required 
+               pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p class="login-link">
+        Already have an account? 
+        <a href="/account/login">Login here</a>
+    </p>
+</main>
+
