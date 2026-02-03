@@ -19,8 +19,6 @@ router.post(
 // Task 3: Add Inventory
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
 
-// Task 3: Add Inventory
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId))
 // Add this to routes/inventoryRoute.js
