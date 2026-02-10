@@ -298,3 +298,59 @@ input:not(:placeholder-shown):valid {
 input::placeholder {
     color: transparent; /* Makes it invisible but still 'present' for the CSS logic */
 }
+
+/* ******************************************
+ * Inventory Management Table Styling
+ *******************************************/
+
+#inventoryDisplay {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+#inventoryDisplay thead {
+    background-color: #333; /* Matches your nav bar */
+    color: white;
+}
+
+#inventoryDisplay th, 
+#inventoryDisplay td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Zebra striping for readability */
+#inventoryDisplay tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect */
+#inventoryDisplay tbody tr:hover {
+    background-color: #e9f5f4;
+}
+
+/* Link styling within the table */
+#inventoryDisplay td a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #3a9691; /* Matches your brand color */
+    transition: color 0.3s;
+}
+
+#inventoryDisplay td a:hover {
+    color: #2f7b76;
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for the table */
+@media screen and (max-width: 600px) {
+    #inventoryDisplay th, 
+    #inventoryDisplay td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}

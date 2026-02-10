@@ -8,8 +8,7 @@ const invController = require("../controllers/invController")
 // Deliver views
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
-router.get("/", utilities.handleErrors(invController.buildManagement));
-
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagementView))
 // Process registration
 router.post(
   "/register",
@@ -21,10 +20,30 @@ router.post(
 // Process the login attempt
 router.post(
   "/login",
-  (req, res) => {
-    res.status(200).send('login process')
-  }
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
 )
 
+// Task 5: Deliver Update View
+router.get("/update/:accountId", utilities.handleErrors(accountController.buildAccountUpdateView))
 
+// Task 5: Process Account Update 
+router.post(
+  "/update",
+  regValidate.updateRules(),
+  regValidate.checkUpdateData, 
+  utilities.handleErrors(accountController.updateAccount)
+)
+
+// Task 5: Process Password Change
+router.post(
+  "/password",
+  regValidate.passwordRules(),
+  regValidate.checkUpdateData,
+  utilities.handleErrors(accountController.updatePassword)
+)
+
+// Task 6: Logout 
+router.get("/logout", utilities.handleErrors(accountController.accountLogout))
 module.exports = router

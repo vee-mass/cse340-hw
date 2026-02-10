@@ -1,0 +1,27 @@
+<%- include("../partials/head") %>
+
+<main class="register-container">
+    <h1><%= title %></h1>
+    <%- messages() %>
+
+    <p>Confirm Deletion - The delete is permanent.</p>
+
+    <form action="/inv/delete" method="post" class="register-form">
+        <label for="inv_make">Make</label>
+        <input type="text" name="inv_make" id="inv_make" readonly value="<%= locals.inv_make %>">
+
+        <label for="inv_model">Model</label>
+        <input type="text" name="inv_model" id="inv_model" readonly value="<%= locals.inv_model %>">
+
+        <label for="inv_year">Year</label>
+        <input type="text" name="inv_year" id="inv_year" readonly value="<%= locals.inv_year %>">
+
+        <label for="inv_price">Price</label>
+        <input type="text" name="inv_price" id="inv_price" readonly value="<%= locals.inv_price %>">
+
+        <p>Confirm Deletion? This cannot be undone.</p>
+        <button type="submit">Delete Vehicle</button>
+        
+        <input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
+    </form>
+</main>

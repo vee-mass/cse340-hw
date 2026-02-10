@@ -1,6 +1,6 @@
 <%- include("../partials/head") %>
 
-<main class="login-container">
+<main class="register-container">
     <h1><%= title %></h1>
 
     <%# Display flash messages (success/error) %>
@@ -19,8 +19,7 @@
       </ul>
     <% } %>
 
-    <%# The form class must match your CSS for proper layout %>
-    <form action="/account/login" method="post" class="login-form" id="login-form">
+    <form action="/account/login" method="post" class="register-form" id="register-form">
         <label for="account_email">Email</label>
         <input 
             type="email"
