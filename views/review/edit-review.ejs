@@ -1,0 +1,29 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+  <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <%  }) %>
+  </ul>
+<% } %>
+
+<main>
+  <section id="reviews-section">
+    <form action="/review/update" method="post" class="review-form">
+      <label>Review Date:</label>
+      <p><%= new Date(review_date).toLocaleDateString() %></p>
+
+      <label for="review_text">Review Text:</label>
+      <textarea id="review_text" name="review_text" required><%= review_text %></textarea>
+
+      <input type="hidden" name="review_id" value="<%= review_id %>">
+      
+      <button type="submit">Update Review</button>
+    </form>
+  </section>
+</main>

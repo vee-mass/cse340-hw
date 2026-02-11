@@ -354,3 +354,77 @@ input::placeholder {
         font-size: 0.9rem;
     }
 }
+
+/* ******************************************
+ * Reviews Section Styling 
+ *******************************************/
+
+#reviews-section {
+  margin-top: 30px;
+  border-top: 2px solid #3a9691;
+  padding-top: 20px;
+}
+
+#reviews-section h2, #reviews-section h3 {
+  color: #333;
+}
+
+/* Review Form Styling - Matching .register-form */
+#reviews-section form {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+#reviews-section label {
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+#reviews-section textarea {
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-top: 0.25rem;
+  min-height: 100px;
+}
+
+#reviews-section button {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background-color: #3a9691;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  max-width: 200px;
+}
+
+#reviews-section button:hover {
+  background-color: #2f7b76;
+}
+
+/* Existing Reviews List */
+#review-list {
+  list-style: none;
+  padding: 0;
+}
+
+#review-list li {
+  background-color: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-left: 5px solid #3a9691; /* Brand color accent */
+  border-radius: 0 6px 6px 0;
+}
+
+#review-list li p {
+  margin: 5px 0;
+}
+
+#review-list li strong {
+  color: #333;
+}

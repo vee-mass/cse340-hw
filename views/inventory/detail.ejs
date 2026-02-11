@@ -2,9 +2,35 @@
   <h1><%= title %></h1>
 <% } %>
 
+<%- messages() %>
+
 <main>
     <div id="detail-display">
         <%- detailHtml %>
     </div>
-</main>
 
+    <hr>
+
+    <section id="reviews-section">
+        <h2>Customer Reviews</h2>
+        
+        <% if (locals.loggedin) { %>
+            <h3>Review the <%= vehicle.inv_make %> <%= vehicle.inv_model %></h3>
+            <form action="/review/add" method="post" class="review-form">
+                <label for="review_text">Review:</label>
+                <textarea id="review_text" name="review_text" required placeholder="Share your thoughts about this vehicle..."></textarea>
+                
+                <input type="hidden" name="inv_id" value="<%= vehicle.inv_id %>">
+                <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>">
+                
+                <button type="submit">Submit Review</button>
+            </form>
+        <% } else { %>
+            <p>Please <a href="/account/login">login</a> to leave a review.</p>
+        <% } %>
+
+        <div id="existing-reviews">
+            <%- reviews %>
+        </div>
+    </section>
+</main>

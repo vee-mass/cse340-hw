@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const reviewModel = require("../models/review-model")
 
 const invCont = {}
 
@@ -25,12 +26,22 @@ invCont.buildByClassificationId = async function (req, res, next) {
 invCont.buildByInvId = async function (req, res, next) {
   const inv_id = req.params.invId
   const data = await invModel.getInventoryByInvId(inv_id)
+  const reviewsData = await reviewModel.getReviewsByInvId(inv_id)
+  
+  // Use a utility to build the HTML for reviews (see step 2 below)
+  const reviewsHtml = await utilities.buildReviewDisplay(reviewsData)
+  
   const detailHtml = await utilities.buildVehicleDetail(data)
   let nav = await utilities.getNav()
   const vehicleName = `${data.inv_make} ${data.inv_model}`
+  
   res.render("./inventory/detail", {
     title: vehicleName,
     nav,
+    // FIX: Map 'data' to 'vehicle' for the EJS file
+    vehicle: data,      
+    // Pass the HTML string of reviews
+    reviews: reviewsHtml, 
     detailHtml,
   })
 }

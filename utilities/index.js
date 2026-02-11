@@ -200,4 +200,29 @@ Util.checkLogin = (req, res, next) => {
   }
 }
 
+/* **************************************
+* Build the reviews display HTML
+* ************************************ */
+Util.buildReviewDisplay = async function(data) {
+  let display = '<ul id="review-list">'
+  if (data.length > 0) {
+    data.forEach(review => {
+      const date = new Date(review.review_date).toLocaleDateString('en-US', {
+        month: 'long', day: 'numeric', year: 'numeric'
+      })
+      // Get initials or first name for display
+      const screenName = `${review.account_firstname[0]}${review.account_lastname}`
+      
+      display += '<li>'
+      display += `<p><strong>${screenName}</strong> wrote on ${date}:</p>`
+      display += `<p>${review.review_text}</p>`
+      display += '</li><hr>'
+    })
+  } else {
+    display += '<p class="notice">Be the first to write a review!</p>'
+  }
+  display += '</ul>'
+  return display
+}
+
 module.exports = Util
